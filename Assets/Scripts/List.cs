@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CookingList : MonoBehaviour
+public class List : MonoBehaviour
 {
-    public GameObject List;
+    public GameObject list;
 
     // Start is called before the first frame update
     void Start()
     {
-        List.SetActive(false);
+        list.SetActive(false);
     }
 
     // Update is called once per frame
@@ -20,9 +20,9 @@ public class CookingList : MonoBehaviour
 
     public void Load()
     {
-        if (List.activeSelf == false)
-            List.SetActive(true);
-        else if (List.activeSelf == true)
-            List.SetActive(false);
+        if (list.activeSelf == false)
+            list.SetActive(true);
+        else if (list.activeSelf == true)
+            list.SetActive(false);
     }
 }

@@ -6,22 +6,30 @@ using UnityEngine.UI;
 
 public class ActivityPower : MonoBehaviour
 {
+    public static ActivityPower instance;
+
     [SerializeField] Text APText;
     [SerializeField] Text TimerText;
     [SerializeField] Slider APBar;
 
-    private int CurrentAP = 0;          // 보유 행동력
-    private int MaxAP = 15;             // 최대 행동력
+    public int CurAP = 0;          // 보유 행동력
+    public int MaxAP = 15;             // 최대 행동력
+
     private int restoreDuration = 30;   // 행동력 회복 간격(s)
     private DateTime nextAPTime;
     private DateTime lastAPTime;
     private bool isRestoring = false;   // 회복 여부
 
+    void Awake()
+    {
+        if (ActivityPower.instance == null)
+            ActivityPower.instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.SetInt("CurrentAP", 15);
+        PlayerPrefs.SetInt("CurAP", MaxAP);
         Load();
         StartCoroutine(RestoreAP());
     }
@@ -36,14 +44,13 @@ public class ActivityPower : MonoBehaviour
 
     public void UseAP()
     {
-        if (CurrentAP >= 1)
+        if (CurAP >= 1)
         {
-            CurrentAP--;
             UpdateAP();
 
             if (isRestoring == false)
             {
-                if (CurrentAP + 1 == MaxAP)
+                if (CurAP + 1 == MaxAP)
                 {
                     nextAPTime = AddDuration(DateTime.Now, restoreDuration);
                 }
@@ -62,7 +69,7 @@ public class ActivityPower : MonoBehaviour
         UpdateAPTimer();
         isRestoring = true;
 
-        while (CurrentAP < MaxAP)
+        while (CurAP < MaxAP)
         {
             DateTime CurrentDateTime = DateTime.Now;
             DateTime NextDateTime = nextAPTime;
@@ -70,10 +77,10 @@ public class ActivityPower : MonoBehaviour
 
             while (CurrentDateTime > NextDateTime)
             {
-                if (CurrentAP < MaxAP)
+                if (CurAP < MaxAP)
                 {
                     isAPAdding = true;
-                    CurrentAP++;
+                    CurAP++;
                     UpdateAP();
                     DateTime timeToAdd = lastAPTime > NextDateTime ? lastAPTime : NextDateTime;
                     NextDateTime = AddDuration(timeToAdd, restoreDuration);
@@ -106,7 +113,7 @@ public class ActivityPower : MonoBehaviour
 
     private void UpdateAPTimer()
     {
-        if (CurrentAP >= MaxAP)
+        if (CurAP >= MaxAP)
         {
             TimerText.text = "MAX";
             return;
@@ -119,10 +126,10 @@ public class ActivityPower : MonoBehaviour
 
     private void UpdateAP()
     {
-        APText.text = CurrentAP.ToString() + "/" + MaxAP.ToString();
+        APText.text = CurAP.ToString() + "/" + MaxAP.ToString();
 
         APBar.maxValue = MaxAP;
-        APBar.value = CurrentAP;
+        APBar.value = CurAP;
     }
 
     private DateTime StringToDate(string datetime)
@@ -139,14 +146,15 @@ public class ActivityPower : MonoBehaviour
 
     private void Load()
     {
-        CurrentAP = PlayerPrefs.GetInt("CurrentAP");
+        CurAP = PlayerPrefs.GetInt("CurrentAP");
         nextAPTime = StringToDate(PlayerPrefs.GetString("nextAPTime"));
         lastAPTime = StringToDate(PlayerPrefs.GetString("lastAPTime"));
+        APText.text = CurAP.ToString() + "/" + MaxAP.ToString();
     }
 
     private void Save()
     {
-        PlayerPrefs.SetInt("CurrentAP", CurrentAP);
+        PlayerPrefs.SetInt("CurrentAP", CurAP);
         PlayerPrefs.SetString("nextAPTime", nextAPTime.ToString());
         PlayerPrefs.SetString("lastAPTime", lastAPTime.ToString());
     }
