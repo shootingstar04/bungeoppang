@@ -29,9 +29,18 @@ public class ActivityPower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.SetInt("CurAP", MaxAP);
-        Load();
-        StartCoroutine(RestoreAP());
+        if (!PlayerPrefs.HasKey("CurAP"))
+        {
+            PlayerPrefs.SetInt("CurAP", MaxAP);
+            Load();
+            StartCoroutine(RestoreAP());
+        }
+        else
+        {
+            Load();
+            StartCoroutine(RestoreAP());
+        }
+        
     }
 
     void Update()
@@ -146,7 +155,7 @@ public class ActivityPower : MonoBehaviour
 
     private void Load()
     {
-        CurAP = PlayerPrefs.GetInt("CurrentAP");
+        CurAP = PlayerPrefs.GetInt("CurAP");
         nextAPTime = StringToDate(PlayerPrefs.GetString("nextAPTime"));
         lastAPTime = StringToDate(PlayerPrefs.GetString("lastAPTime"));
         APText.text = CurAP.ToString() + "/" + MaxAP.ToString();
@@ -154,7 +163,7 @@ public class ActivityPower : MonoBehaviour
 
     private void Save()
     {
-        PlayerPrefs.SetInt("CurrentAP", CurAP);
+        PlayerPrefs.SetInt("CurAP", CurAP);
         PlayerPrefs.SetString("nextAPTime", nextAPTime.ToString());
         PlayerPrefs.SetString("lastAPTime", lastAPTime.ToString());
     }

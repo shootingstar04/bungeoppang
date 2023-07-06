@@ -38,26 +38,12 @@ public class MenuSetting : MonoBehaviour
 
     public void SelectMenu()
     {
-        switch (MenuCode)
-        {
-            case 1:
-                MenuImage.sprite = sprites[MenuCode - 1];
-                MenuLevel.text = "1";
-                MenuExp.text = "0" + "/" + "2";
-                NeedMoney.text = "000";
-                NeedAP.text = "1";
-                MenuNum.text = "1";
-                break;
-            case 2 :
-                MenuImage.sprite = sprites[MenuCode - 1];
-                MenuLevel.text = "1";
-                MenuExp.text = "0" + "/" + "2";
-                NeedMoney.text = "100";
-                NeedAP.text = "2";
-                MenuNum.text = "1";
-                break;
-            default :
-                break;
-        }
+        MenuImage.sprite = sprites[MenuCode];
+        MenuLevel.text = FoodData.instance.FoodMenu[MenuCode, 0].ToString();
+        MenuExp.text = FoodData.instance.FoodMenu[MenuCode, 1].ToString() 
+             + "/" + FoodData.instance.FoodMenu[MenuCode, 2].ToString();
+        NeedMoney.text = FoodData.instance.FoodMenu[MenuCode, 3].ToString();
+        NeedAP.text = FoodData.instance.FoodMenu[MenuCode, 4].ToString();
+        MenuNum.text = FoodData.instance.FoodMenu[MenuCode, 5].ToString();
     }
 }
