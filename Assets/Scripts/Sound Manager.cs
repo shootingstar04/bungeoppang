@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioSource MusicSource;
-    public AudioSource EffectSource;
+    public AudioSource BGMSource;
+    public AudioSource SFXSource;
 
-    public void SetMusicVolume(float volume)
+    public void SetBGMVolume(float volume)
     {
-        MusicSource.volume = volume;
+        BGMSource.volume = volume;
     }
 
-    public void SetEffectVolume(float volume)
+    public void SetSFXVolume(float volume)
     {
-        EffectSource.volume = volume;
+        SFXSource.volume = volume;
     }
 }

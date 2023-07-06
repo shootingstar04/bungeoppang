@@ -5,12 +5,20 @@ using UnityEngine.UI;
 
 public class Level : MonoBehaviour
 {
+    public static Level instance;
+
     [SerializeField] Text levetText;
     [SerializeField] Image expImage;
 
-    private int level;
-    private float curexp = 0;
-    private float maxexp = 100;
+    public int level;
+    public float curexp = 0;
+    public float maxexp = 100;
+
+    void Awake()
+    {
+        if (Level.instance == null)
+            Level.instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -32,5 +40,7 @@ public class Level : MonoBehaviour
         curexp -= maxexp;
         ++level;
         levetText.text = level.ToString();
+        ++ActivityPower.instance.MaxAP;
+        ActivityPower.instance.CurAP = ActivityPower.instance.MaxAP;
     }
 }
