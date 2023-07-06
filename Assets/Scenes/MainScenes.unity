@@ -1442,33 +1442,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 508955004}
-        m_TargetAssemblyTypeName: List, Assembly-CSharp
+        m_TargetAssemblyTypeName: WindowSettiong, Assembly-CSharp
         m_MethodName: Load
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1752797570}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 724080043}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1524,10 +1500,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 508954999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9dde2c899e030a46b8b9c36ef5d59a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 76277526b2ce89b4382a8e22b6fb785a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  list: {fileID: 1835767435}
+  window: {fileID: 1835767435}
+  WindowList:
+  - {fileID: 1752797570}
+  - {fileID: 724080043}
 --- !u!1 &511535159
 GameObject:
   m_ObjectHideFlags: 0
@@ -5146,7 +5125,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1523950063}
-        m_TargetAssemblyTypeName: CookingList, Assembly-CSharp
+        m_TargetAssemblyTypeName: WindowSettiong, Assembly-CSharp
         m_MethodName: Load
         m_Mode: 1
         m_Arguments:
@@ -5204,10 +5183,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1523950058}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9dde2c899e030a46b8b9c36ef5d59a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 76277526b2ce89b4382a8e22b6fb785a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  list: {fileID: 1752797570}
+  window: {fileID: 1752797570}
+  WindowList:
+  - {fileID: 1835767435}
+  - {fileID: 724080043}
 --- !u!1 &1525418476
 GameObject:
   m_ObjectHideFlags: 0

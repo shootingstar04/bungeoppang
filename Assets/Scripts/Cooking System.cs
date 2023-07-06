@@ -30,12 +30,14 @@ public class CookingSystem : MonoBehaviour
 
     public void Cooking()
     {
-        if (useAP <= ActivityPower.instance.CurAP 
-            && useMoney <= Money.instance.money)
+        if (useAP <= ActivityPower.instance.CurAP  && useMoney <= Money.instance.money)
         {
             ActivityPower.instance.CurAP -= useAP;
             ActivityPower.instance.UseAP();
             Money.instance.money -= useMoney;
+
+            ++FoodData.instance.FoodMenu[MenuCode, 1];
+            FoodData.instance.Save(MenuCode);
         }
     }
 }
