@@ -6,6 +6,9 @@ public class CookingSystem : MonoBehaviour
 {
     public static CookingSystem instance;
 
+    [SerializeField] GameObject NoAPWindow;
+    [SerializeField] GameObject NoMoneyWindow;
+
     public int MenuCode = 0;
     public int useAP = 0;
     public int useMoney = 0;
@@ -38,6 +41,14 @@ public class CookingSystem : MonoBehaviour
 
             ++FoodData.instance.FoodMenu[MenuCode, 1];
             FoodData.instance.Save(MenuCode);
+        }
+        else if (useAP > ActivityPower.instance.CurAP)
+        {
+            NoAPWindow.SetActive(true);
+        }
+        else if (useMoney > Money.instance.money)
+        {
+            NoMoneyWindow.SetActive(true);
         }
     }
 }

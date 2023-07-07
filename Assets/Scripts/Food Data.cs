@@ -32,6 +32,11 @@ public class FoodData : MonoBehaviour
         
     }
 
+    private void Load()
+    {
+
+    }
+
     public void Save(int MenuCode)
     {
         if (FoodMenu[MenuCode, 1] >= FoodMenu[MenuCode, 2])
