@@ -3607,8 +3607,8 @@ MonoBehaviour:
   levetText: {fileID: 213520482}
   expImage: {fileID: 258881541}
   level: 0
-  curexp: 0
-  maxexp: 100
+  CurExp: 0
+  MaxExp: 100
 --- !u!1 &529634176
 GameObject:
   m_ObjectHideFlags: 0
