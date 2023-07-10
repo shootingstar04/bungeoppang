@@ -11,8 +11,8 @@ public class Level : MonoBehaviour
     [SerializeField] Image expImage;
 
     public int level;
-    public float curexp = 0;
-    public float maxexp = 100;
+    public float CurExp = 0;
+    public float MaxExp = 100;
 
     void Awake()
     {
@@ -29,18 +29,32 @@ public class Level : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        expImage.fillAmount = (curexp / maxexp);
+        expImage.fillAmount = (CurExp / MaxExp);
 
-        if (curexp >= maxexp)
+        if (CurExp >= MaxExp)
             LevelUp();
     }
 
     private void LevelUp()
     {
-        curexp -= maxexp;
+        CurExp -= MaxExp;
         ++level;
         levetText.text = level.ToString();
         ++ActivityPower.instance.MaxAP;
         ActivityPower.instance.CurAP = ActivityPower.instance.MaxAP;
+    }
+
+    private void Load()
+    {
+        level = PlayerPrefs.GetInt("level");
+        CurExp = PlayerPrefs.GetFloat("CurExp");
+        MaxExp = PlayerPrefs.GetFloat("MaxExp");
+    }
+
+    private void Save()
+    {
+        PlayerPrefs.SetInt("level", level);
+        PlayerPrefs.SetFloat("CurExp", CurExp);
+        PlayerPrefs.SetFloat("MaxExp", MaxExp);
     }
 }
