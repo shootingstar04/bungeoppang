@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FacilitiesSystem : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class FacilitiesSystem : MonoBehaviour
         if (useMoney <= Money.instance.money)
         {
             Money.instance.money -= useMoney;
+            GetComponent<Button>().interactable = false;
         }
         else if (useMoney > Money.instance.money)
         {

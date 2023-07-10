@@ -6,7 +6,8 @@ public class MenuNum : MonoBehaviour
 {
     public static MenuNum instance;
 
-    public int menuCode = 0;
+    public int MenuCode = 0;
+    public int MenuType = 0;
     public int UseAP = 0;
     public int UseMoney = 0;
 
@@ -30,10 +31,10 @@ public class MenuNum : MonoBehaviour
 
     public void MenuUpdate()
     {
-        MenuSetting.instance.MenuCode = menuCode;
+        MenuSetting.instance.MenuCode = MenuCode;
         MenuSetting.instance.SelectMenu();
 
-        CookingSystem.instance.MenuCode = menuCode;
+        CookingSystem.instance.MenuCode = MenuCode;
         CookingSystem.instance.useAP = UseAP;
         CookingSystem.instance.useMoney = UseMoney;
     }

@@ -20,12 +20,32 @@ public class Money : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.SetInt("money", 500);
+        if (!PlayerPrefs.HasKey("CurAP"))
+        {
+            PlayerPrefs.SetInt("money", 500);
+            Load();
+        }
+        else
+        {
+            Load();
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         MoneyText.text = money.ToString();
+        Save();
+    }
+
+    void Load()
+    {
+        money = PlayerPrefs.GetInt("Mevel");
+    }
+
+    void Save()
+    {
+        PlayerPrefs.SetInt("Money", money);
     }
 }
