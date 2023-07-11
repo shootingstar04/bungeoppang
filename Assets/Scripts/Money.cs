@@ -38,15 +38,15 @@ public class Money : MonoBehaviour
         MoneyText.text = money.ToString();
     }
 
-    public void UseMoney()
+    public void UseMoney(int useMoney)
     {
-
+        money -= useMoney;
         Save();
     }
 
-    public void AcquireMoney()
+    public void AcquireMoney(int AcqMoney)
     {
-
+        money += AcqMoney;
         Save();
     }
 

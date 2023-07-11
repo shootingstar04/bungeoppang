@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CompletionFood : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class CompletionFood : MonoBehaviour
     public bool[] FoodExist;
     public int[]  FoodCode;
     public int[] FoodAmount;
+
+    public GameObject[] DisplayStand;
 
     public int FoodMax = 2;
 
@@ -21,9 +24,9 @@ public class CompletionFood : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FoodExist = new bool[8];
-        FoodCode = new int[8];
-        FoodAmount = new int[8];
+        FoodExist = new bool[6];
+        FoodCode = new int[6];
+        FoodAmount = new int[6];
 
         for (int i = 0; i < FoodMax; ++i)
         {
@@ -42,6 +45,7 @@ public class CompletionFood : MonoBehaviour
             {
                 FoodExist[i] = false;
                 FoodCode[i] = -1;
+                DisplayStand[i].SetActive(false);
             }
         }
     }
@@ -66,5 +70,12 @@ public class CompletionFood : MonoBehaviour
         }
 
         return -1;
+    }
+
+    public void DisplayingFood(int num, int MenuCode)
+    {
+        Debug.Log("요리 전시");
+        DisplayStand[num].SetActive(true);
+        DisplayStand[num].GetComponent<Image>().sprite = MenuSetting.instance.sprites[MenuCode];
     }
 }

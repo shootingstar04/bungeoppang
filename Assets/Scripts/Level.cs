@@ -39,8 +39,6 @@ public class Level : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(CurExp);
-        
         if (CurExp != 0)
             expImage.fillAmount = (CurExp / MaxExp);
         else if (CurExp == 0)
@@ -53,9 +51,9 @@ public class Level : MonoBehaviour
             LevelUp();
     }
 
-    public void AcquireExp()
+    public void AcquireExp(int AcqExp)
     {
-
+        CurExp += AcqExp;
         Save();
     }
 

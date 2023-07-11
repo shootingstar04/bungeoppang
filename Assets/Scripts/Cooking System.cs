@@ -41,6 +41,7 @@ public class CookingSystem : MonoBehaviour
                 CompletionFood.instance.FoodExist[num] = true;
                 CompletionFood.instance.FoodCode[num] = MenuCode;
                 CompletionFood.instance.FoodAmount[num] += 2;
+                CompletionFood.instance.DisplayingFood(num, MenuCode);
 
                 ActivityPower.instance.CurAP -= useAP;
                 ActivityPower.instance.UseAP();
@@ -55,6 +56,7 @@ public class CookingSystem : MonoBehaviour
                 CompletionFood.instance.FoodExist[num] = true;
                 CompletionFood.instance.FoodCode[num] = MenuCode;
                 CompletionFood.instance.FoodAmount[num] += 2;
+                CompletionFood.instance.DisplayingFood(num, MenuCode);
 
                 ActivityPower.instance.CurAP -= useAP;
                 ActivityPower.instance.UseAP();
