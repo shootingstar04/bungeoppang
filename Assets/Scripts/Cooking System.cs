@@ -35,12 +35,34 @@ public class CookingSystem : MonoBehaviour
     {
         if (useAP <= ActivityPower.instance.CurAP  && useMoney <= Money.instance.money)
         {
-            ActivityPower.instance.CurAP -= useAP;
-            ActivityPower.instance.UseAP();
-            Money.instance.money -= useMoney;
+            if (CompletionFood.instance.OverlapFood() == MenuCode)
+            {
+                int num = CompletionFood.instance.OverlapFood();
+                CompletionFood.instance.FoodExist[num] = true;
+                CompletionFood.instance.FoodCode[num] = MenuCode;
+                CompletionFood.instance.FoodAmount[num] += 2;
 
-            ++FoodData.instance.FoodMenu[MenuCode, 1];
-            FoodData.instance.Save(MenuCode);
+                ActivityPower.instance.CurAP -= useAP;
+                ActivityPower.instance.UseAP();
+                Money.instance.money -= useMoney;
+
+                ++FoodData.instance.FoodMenu[MenuCode, 1];
+                FoodData.instance.Save(MenuCode);
+            }
+            else if (CompletionFood.instance.ThereFood() != -1)
+            {
+                int num = CompletionFood.instance.ThereFood();
+                CompletionFood.instance.FoodExist[num] = true;
+                CompletionFood.instance.FoodCode[num] = MenuCode;
+                CompletionFood.instance.FoodAmount[num] += 2;
+
+                ActivityPower.instance.CurAP -= useAP;
+                ActivityPower.instance.UseAP();
+                Money.instance.money -= useMoney;
+                
+                ++FoodData.instance.FoodMenu[MenuCode, 1];
+                FoodData.instance.Save(MenuCode);
+            }
         }
         else if (useAP > ActivityPower.instance.CurAP)
         {

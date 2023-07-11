@@ -20,9 +20,9 @@ public class Money : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!PlayerPrefs.HasKey("CurAP"))
+        if (!PlayerPrefs.HasKey("Money"))
         {
-            PlayerPrefs.SetInt("money", 500);
+            PlayerPrefs.SetInt("Money", 500);
             Load();
         }
         else
@@ -36,12 +36,23 @@ public class Money : MonoBehaviour
     void Update()
     {
         MoneyText.text = money.ToString();
+    }
+
+    public void UseMoney()
+    {
+
+        Save();
+    }
+
+    public void AcquireMoney()
+    {
+
         Save();
     }
 
     void Load()
     {
-        money = PlayerPrefs.GetInt("Mevel");
+        money = PlayerPrefs.GetInt("Money");
     }
 
     void Save()

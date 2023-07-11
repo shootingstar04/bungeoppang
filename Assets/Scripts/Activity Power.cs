@@ -31,6 +31,7 @@ public class ActivityPower : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("CurAP"))
         {
+            PlayerPrefs.SetInt("MaxAP", 15);
             PlayerPrefs.SetInt("CurAP", MaxAP);
             Load();
             StartCoroutine(RestoreAP());
@@ -66,10 +67,6 @@ public class ActivityPower : MonoBehaviour
 
                 StartCoroutine(RestoreAP());
             }
-        }
-        else
-        {
-            Debug.Log("에너지 부족");
         }
     }
 
@@ -153,9 +150,19 @@ public class ActivityPower : MonoBehaviour
         }
     }
 
+    public void RecoveryAP()
+    {
+        ++MaxAP;
+        CurAP = MaxAP;
+        Save();
+        UpdateAPTimer();
+        UpdateAP();
+    }
+
     private void Load()
     {
         CurAP = PlayerPrefs.GetInt("CurAP");
+        MaxAP = PlayerPrefs.GetInt("MaxAP");
         nextAPTime = StringToDate(PlayerPrefs.GetString("nextAPTime"));
         lastAPTime = StringToDate(PlayerPrefs.GetString("lastAPTime"));
         APText.text = CurAP.ToString() + "/" + MaxAP.ToString();
@@ -164,6 +171,7 @@ public class ActivityPower : MonoBehaviour
     private void Save()
     {
         PlayerPrefs.SetInt("CurAP", CurAP);
+        PlayerPrefs.SetInt("MaxAP", MaxAP);
         PlayerPrefs.SetString("nextAPTime", nextAPTime.ToString());
         PlayerPrefs.SetString("lastAPTime", lastAPTime.ToString());
     }

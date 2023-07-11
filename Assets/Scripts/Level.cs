@@ -10,9 +10,9 @@ public class Level : MonoBehaviour
     [SerializeField] Text levetText;
     [SerializeField] Image expImage;
 
-    public int level;
-    public float CurExp = 0;
-    public float MaxExp = 100;
+    public int level = 1;
+    public int CurExp = 0;
+    public int MaxExp = 100;
 
     void Awake()
     {
@@ -23,41 +23,61 @@ public class Level : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.HasKey("CurAP"))
+        if (!PlayerPrefs.HasKey("CurExp"))
         {
+            PlayerPrefs.SetInt("Level", 1);
+            PlayerPrefs.SetInt("CurExp", 0);
+            PlayerPrefs.SetInt("MaxExp", 100);
             Load();
         }
+        else
+        {
+            Load();
+        };
     }
 
     // Update is called once per frame
     void Update()
     {
-        expImage.fillAmount = (CurExp / MaxExp);
+        Debug.Log(CurExp);
+        
+        if (CurExp != 0)
+            expImage.fillAmount = (CurExp / MaxExp);
+        else if (CurExp == 0)
+            expImage.fillAmount = 0;
+        
+        levetText.text = level.ToString();
+        
 
         if (CurExp >= MaxExp)
             LevelUp();
+    }
+
+    public void AcquireExp()
+    {
+
+        Save();
     }
 
     private void LevelUp()
     {
         CurExp -= MaxExp;
         ++level;
-        levetText.text = level.ToString();
-        ++ActivityPower.instance.MaxAP;
-        ActivityPower.instance.CurAP = ActivityPower.instance.MaxAP;
+        ActivityPower.instance.RecoveryAP();
+        Save();
     }
 
     void Load()
     {
         level = PlayerPrefs.GetInt("Level");
-        CurExp = PlayerPrefs.GetFloat("CurExp");
-        MaxExp = PlayerPrefs.GetFloat("MaxExp");
+        CurExp = PlayerPrefs.GetInt("CurExp");
+        MaxExp = PlayerPrefs.GetInt("MaxExp");
 }
 
     void Save()
     {
         PlayerPrefs.SetInt("Level", level);
-        PlayerPrefs.SetFloat("CurExp", CurExp);
-        PlayerPrefs.SetFloat("MaxExp", MaxExp);
+        PlayerPrefs.SetInt("CurExp", CurExp);
+        PlayerPrefs.SetInt("MaxExp", MaxExp);
     }
 }

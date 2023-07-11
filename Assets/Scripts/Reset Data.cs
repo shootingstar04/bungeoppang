@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SellSystem : MonoBehaviour
+public class ResetData : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -16,10 +16,10 @@ public class SellSystem : MonoBehaviour
         
     }
 
-    public void Sell()
+    public void ResetAll()
     {
-        CompletionFood.instance.FoodAmount[0] -= 1;
-        Money.instance.money += 500;
-        Level.instance.CurExp += 10;
-    }    
+        Debug.Log("데이터 삭제");
+        PlayerPrefs.DeleteAll();
+
+    }
 }
