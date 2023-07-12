@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SellSystem : MonoBehaviour
+public class VisitorData : MonoBehaviour
 {
+    public int[] Seat;
+    public int SeatMax;
+    public int VisitorNum;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,11 +19,4 @@ public class SellSystem : MonoBehaviour
     {
         
     }
-
-    public void Sell()
-    {
-        CompletionFood.instance.FoodAmount[0] -= 1;
-        Money.instance.AcquireMoney(500);
-        Level.instance.AcquireExp(15);
-    }    
 }

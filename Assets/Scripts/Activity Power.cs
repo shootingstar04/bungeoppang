@@ -6,35 +6,34 @@ using UnityEngine.UI;
 
 public class ActivityPower : MonoBehaviour
 {
-    public static ActivityPower instance;
+    public static ActivityPower instance;       // 싱글톤 패턴 구현
 
-    [SerializeField] Text APText;
-    [SerializeField] Text TimerText;
-    [SerializeField] Slider APBar;
+    [SerializeField] Text APText;               // AP 보유량 텍스트
+    [SerializeField] Text TimerText;            // 타이머 텍스트
+    [SerializeField] Slider APBar;              // AP바 슬라이더
 
-    public int CurAP = 0;          // 보유 행동력
-    public int MaxAP = 15;             // 최대 행동력
+    public int CurAP = 0;                       // 보유 행동력
+    public int MaxAP = 15;                      // 최대 행동력
 
-    private int restoreDuration = 30;   // 행동력 회복 간격(s)
-    private DateTime nextAPTime;
-    private DateTime lastAPTime;
-    private bool isRestoring = false;   // 회복 여부
+    private int restoreDuration = 30;           // 행동력 회복 간격(s)
+    private DateTime nextAPTime;             
+    private DateTime lastAPTime;            
+    private bool isRestoring = false;           // 회복 여부
 
-    void Awake()
+    void Awake()                                // 게임 시작 전 호출
     {
         if (ActivityPower.instance == null)
             ActivityPower.instance = this;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void Start()                                // 게임 시작 후 호출
     {
-        if (!PlayerPrefs.HasKey("CurAP"))
+        if (!PlayerPrefs.HasKey("CurAP"))       // CurAP에 데이터가 없다면
         {
-            PlayerPrefs.SetInt("MaxAP", 15);
-            PlayerPrefs.SetInt("CurAP", MaxAP);
-            Load();
-            StartCoroutine(RestoreAP());
+            PlayerPrefs.SetInt("MaxAP", 15);    // MaxAP에 15 저장
+            PlayerPrefs.SetInt("CurAP", MaxAP); // CurAP에 MaxAP 저장
+            Load();                             // 게임 데이터 로드
+            StartCoroutine(RestoreAP());        // RestoreAP() 코루틴 작동
         }
         else
         {
@@ -52,8 +51,10 @@ public class ActivityPower : MonoBehaviour
             APBar.transform.Find("Fill Area").gameObject.SetActive(true);
     }
 
-    public void UseAP()
+    public void UseAP(int useAP)
     {
+        CurAP -= useAP;
+
         if (CurAP >= 1)
         {
             UpdateAP();

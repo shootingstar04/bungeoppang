@@ -40,7 +40,7 @@ public class Level : MonoBehaviour
     void Update()
     {
         if (CurExp != 0)
-            expImage.fillAmount = (CurExp / MaxExp);
+            expImage.fillAmount = ((float)CurExp / (float)MaxExp);
         else if (CurExp == 0)
             expImage.fillAmount = 0;
         

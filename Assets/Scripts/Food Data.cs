@@ -1,10 +1,26 @@
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class FoodData : MonoBehaviour
 {
     public static FoodData instance;
+
+    public int[]    MenuCode;
+    public string[] MenuName;
+    public string[] MenuType;
+    public int[]    ReleaseLevel;
+    public string[] ReleaseConditions;
+    public int[]    MenuLevel;
+    public int[]    MenuCurExp;
+    public int[]    MenuMaxExp;
+    public int[]    UseMoney;
+    public int[]    UseAP;
+    public int[]    AcquireMoney;
+    public int[]    AcquireExp;
+    public string[] ExplanationMenu;
 
     public int[,] FoodMenu = new int[2, 6];
 
@@ -17,13 +33,8 @@ public class FoodData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int z = 0;
-        for (int i = 0; i < FoodMenu.GetLength(0); i++)
-            for (int j = 0; j < FoodMenu.GetLength(1); j++)
-            {
-                FoodMenu[i, j] = z;
-                ++z;
-            }
+        Load();
+        
     }
 
     // Update is called once per frame
@@ -34,17 +45,12 @@ public class FoodData : MonoBehaviour
 
     private void Load()
     {
-
+        
     }
 
     public void Save(int MenuCode)
     {
-        if (FoodMenu[MenuCode, 1] >= FoodMenu[MenuCode, 2])
-            MenuLevelUp(MenuCode);
-
-        PlayerPrefs.SetInt("FoodLevel", FoodMenu[MenuCode, 0]);
-        PlayerPrefs.SetInt("FoodCurExp", FoodMenu[MenuCode, 1]);
-        PlayerPrefs.SetInt("FoodMaxExp", FoodMenu[MenuCode, 2]);
+        
     }
 
     private void MenuLevelUp(int MenuCode)

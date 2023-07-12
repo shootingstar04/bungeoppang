@@ -51,7 +51,7 @@ public class MenuSort : MonoBehaviour
         }
     }
 
-    public void FSort()
+    public void WSort()
     {
         for (int i = 0; i < MenuMax; ++i)
             Menu[i].SetActive(true);

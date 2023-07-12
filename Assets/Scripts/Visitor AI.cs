@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class VisitorAI : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Transform Target;
+    public float Speed = 1.0f;
+    
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        
+        transform.position = Vector2.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
     }
 }

@@ -43,9 +43,8 @@ public class CookingSystem : MonoBehaviour
                 CompletionFood.instance.FoodAmount[num] += 2;
                 CompletionFood.instance.DisplayingFood(num, MenuCode);
 
-                ActivityPower.instance.CurAP -= useAP;
-                ActivityPower.instance.UseAP();
-                Money.instance.money -= useMoney;
+                ActivityPower.instance.UseAP(useAP);
+                Money.instance.UseMoney(useMoney);
 
                 ++FoodData.instance.FoodMenu[MenuCode, 1];
                 FoodData.instance.Save(MenuCode);
@@ -58,10 +57,9 @@ public class CookingSystem : MonoBehaviour
                 CompletionFood.instance.FoodAmount[num] += 2;
                 CompletionFood.instance.DisplayingFood(num, MenuCode);
 
-                ActivityPower.instance.CurAP -= useAP;
-                ActivityPower.instance.UseAP();
-                Money.instance.money -= useMoney;
-                
+                ActivityPower.instance.UseAP(useAP);
+                Money.instance.UseMoney(useMoney);
+
                 ++FoodData.instance.FoodMenu[MenuCode, 1];
                 FoodData.instance.Save(MenuCode);
             }

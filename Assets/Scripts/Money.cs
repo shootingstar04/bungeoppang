@@ -5,58 +5,55 @@ using UnityEngine.UI;
 
 public class Money : MonoBehaviour
 {
-    public static Money instance;
+    public static Money instance;               // 싱글톤 패턴 구현
 
-    [SerializeField] Text MoneyText;
+    [SerializeField] Text MoneyText;            // 재화량 출력 텍스트
 
-    public int money = 0;
+    public int money = 0;                       // 현재 보유 재화량
 
-    void Awake()
+    void Awake()                                // 게임 시작 전 호출
     {
-        if(Money.instance == null)
+        if(Money.instance == null)          
             Money.instance = this;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void Start()                                // 게임 시작 후 호출
     {
-        if (!PlayerPrefs.HasKey("Money"))
+        if (!PlayerPrefs.HasKey("Money"))       // 만약 Money에 데이터가 없다면
         {
-            PlayerPrefs.SetInt("Money", 500);
-            Load();
+            PlayerPrefs.SetInt("Money", 500);   // Money에 데이터 저장
+            Load();                             // 게임 데이터 로드
         }
-        else
+        else                                    // 아닐 경우
         {
-            Load();
+            Load();                             // 게임 데이터 로드
         }
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    void Update()                               // 게임 프레임 당 호출
     {
-        MoneyText.text = money.ToString();
+        MoneyText.text = money.ToString();      // 재화량 출력
     }
 
-    public void UseMoney(int useMoney)
+    public void UseMoney(int useMoney)          // 재화 사용 함수
     {
-        money -= useMoney;
-        Save();
+        money -= useMoney;                      // 재화량 감소
+        Save();                                 // 게임 데이터 저장
     }
 
-    public void AcquireMoney(int AcqMoney)
+    public void AcquireMoney(int AcqMoney)      // 재화 획득 함수
     {
-        money += AcqMoney;
-        Save();
+        money += AcqMoney;                      // 재화량 증가
+        Save();                                 // 게임 데이터 저장
     }
 
-    void Load()
+    void Load()                                 // 게임 데이터 로드 함수
     {
-        money = PlayerPrefs.GetInt("Money");
+        money = PlayerPrefs.GetInt("Money");    // 재화량에 Money 데이터 삽입
     }
 
-    void Save()
+    void Save()                                 // 게임 데이터 세이브 함수
     {
-        PlayerPrefs.SetInt("Money", money);
+        PlayerPrefs.SetInt("Money", money);     // Money에 보유 재화량 저장
     }
 }

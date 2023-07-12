@@ -74,7 +74,6 @@ public class CompletionFood : MonoBehaviour
 
     public void DisplayingFood(int num, int MenuCode)
     {
-        Debug.Log("요리 전시");
         DisplayStand[num].SetActive(true);
         DisplayStand[num].GetComponent<Image>().sprite = MenuSetting.instance.sprites[MenuCode];
     }
