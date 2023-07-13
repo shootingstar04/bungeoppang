@@ -4,19 +4,47 @@ using UnityEngine;
 
 public class VisitorData : MonoBehaviour
 {
+    public static VisitorData instance;
+
     public int[] Seat;
     public int SeatMax;
-    public int VisitorNum;
+    public int VisitorNum = 0;
 
-    // Start is called before the first frame update
+    private float CurTime;
+
+    public GameObject Visitor;
+
+    public Transform SpawnPoint;
+
+    void Awake()                                
+    {
+        if (VisitorData.instance == null)
+            VisitorData.instance = this;
+    }
+
     void Start()
     {
-        
+        SeatMax = 4;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(CurTime);
+
+        if (VisitorNum < SeatMax)
+        {
+            CurTime += Time.deltaTime;
+        }
+
+        if (CurTime > 5)
+        {
+            GameObject visitor = Instantiate(Visitor);
+
+            visitor.transform.position = new Vector2(SpawnPoint.position.x, SpawnPoint.position.y); ;
+
+            CurTime = 0;
+            ++VisitorNum;
+        }
     }
 }

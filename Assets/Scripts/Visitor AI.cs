@@ -15,6 +15,9 @@ public class VisitorAI : MonoBehaviour
     
     void Update()
     {
+        
         transform.position = Vector2.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
+
+    //  Target.transform.position = new Vector2(0, VisitorData.instance.VisitorNum - 2.3f);
     }
 }

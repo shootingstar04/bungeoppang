@@ -1,26 +1,12 @@
+using LitJson;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class FoodData : MonoBehaviour
 {
     public static FoodData instance;
-
-    public int[]    MenuCode;
-    public string[] MenuName;
-    public string[] MenuType;
-    public int[]    ReleaseLevel;
-    public string[] ReleaseConditions;
-    public int[]    MenuLevel;
-    public int[]    MenuCurExp;
-    public int[]    MenuMaxExp;
-    public int[]    UseMoney;
-    public int[]    UseAP;
-    public int[]    AcquireMoney;
-    public int[]    AcquireExp;
-    public string[] ExplanationMenu;
 
     public int[,] FoodMenu = new int[2, 6];
 
@@ -43,7 +29,7 @@ public class FoodData : MonoBehaviour
         
     }
 
-    private void Load()
+    void Load()
     {
         
     }
@@ -55,11 +41,6 @@ public class FoodData : MonoBehaviour
 
     private void MenuLevelUp(int MenuCode)
     {
-        FoodMenu[MenuCode, 1] = 0;
-
-        if (FoodMenu[MenuCode, 2] < 5)
-            ++FoodMenu[MenuCode, 2];
-
-        ++FoodMenu[MenuCode, 0];
+        
     }
 }
