@@ -15,6 +15,7 @@ public class VisitorData : MonoBehaviour
     public GameObject Visitor;
 
     public Transform SpawnPoint;
+    public Transform Target;
 
     void Awake()                                
     {
@@ -41,7 +42,7 @@ public class VisitorData : MonoBehaviour
         {
             GameObject visitor = Instantiate(Visitor);
 
-            visitor.transform.position = new Vector2(SpawnPoint.position.x, SpawnPoint.position.y); ;
+            visitor.transform.position = new Vector2(SpawnPoint.position.x, SpawnPoint.position.y);
 
             CurTime = 0;
             ++VisitorNum;
