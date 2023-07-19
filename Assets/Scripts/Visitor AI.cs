@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class VisitorAI : MonoBehaviour
 {
-    public Transform Target;
+    public Transform DestinationPoint;
+    public Transform SpawnPoint;
+
+    public GameObject SpeechBubble;
+
     public float Speed = 1.0f;
-    
+    public bool Bought = false;
+    public bool Select = false;
+
+
     void Start()
     {
         
@@ -15,9 +22,22 @@ public class VisitorAI : MonoBehaviour
     
     void Update()
     {
-        
-        transform.position = Vector2.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
+        if (Select == false && Bought == false && transform.position == DestinationPoint.position)
+        {
+            SpeechBubble.SetActive(true);
+            SelectMenu.instance.Select();
+            Select = true;
+        }
+        else if (Bought == false && transform.position != DestinationPoint.position)
+            transform.position = Vector2.MoveTowards(transform.position, DestinationPoint.position, Speed * Time.deltaTime);
+        else if (Bought == true && transform.position != SpawnPoint.position)
+            transform.position = Vector2.MoveTowards(transform.position, SpawnPoint.position, Speed * Time.deltaTime);
+        else if (Bought == true && transform.position == SpawnPoint.position)
+            Destroy(gameObject);
+    }
 
-    //  Target.transform.position = new Vector2(0, VisitorData.instance.VisitorNum - 2.3f);
+    public void SalesCompleted()
+    {
+        Bought = true;
     }
 }

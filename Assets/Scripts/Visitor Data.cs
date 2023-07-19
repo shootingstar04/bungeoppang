@@ -31,8 +31,6 @@ public class VisitorData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(CurTime);
-
         if (VisitorNum < SeatMax)
         {
             CurTime += Time.deltaTime;

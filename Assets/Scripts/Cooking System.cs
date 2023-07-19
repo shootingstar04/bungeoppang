@@ -35,34 +35,29 @@ public class CookingSystem : MonoBehaviour
     {
         if (useAP <= ActivityPower.instance.CurAP  && useMoney <= Money.instance.money)
         {
+            int num = 0;
             if (CompletionFood.instance.OverlapFood() == MenuCode)
             {
-                int num = CompletionFood.instance.OverlapFood();
-                CompletionFood.instance.FoodExist[num] = true;
-                CompletionFood.instance.FoodCode[num] = MenuCode;
-                CompletionFood.instance.FoodAmount[num] += 2;
-                CompletionFood.instance.DisplayingFood(num, MenuCode);
-
-                ActivityPower.instance.UseAP(useAP);
-                Money.instance.UseMoney(useMoney);
-
-                ++FoodData.instance.FoodMenu[MenuCode, 1];
-                FoodData.instance.Save(MenuCode);
+                num = CompletionFood.instance.OverlapFood();
             }
             else if (CompletionFood.instance.ThereFood() != -1)
             {
-                int num = CompletionFood.instance.ThereFood();
-                CompletionFood.instance.FoodExist[num] = true;
-                CompletionFood.instance.FoodCode[num] = MenuCode;
-                CompletionFood.instance.FoodAmount[num] += 2;
-                CompletionFood.instance.DisplayingFood(num, MenuCode);
-
-                ActivityPower.instance.UseAP(useAP);
-                Money.instance.UseMoney(useMoney);
-
-                ++FoodData.instance.FoodMenu[MenuCode, 1];
-                FoodData.instance.Save(MenuCode);
+                num = CompletionFood.instance.ThereFood();
             }
+
+            CompletionFood.instance.FoodExist[num] = true;
+            CompletionFood.instance.FoodCode[num] = MenuCode;
+            CompletionFood.instance.FoodAmount[num] += 2;
+            CompletionFood.instance.DisplayingFood(num, MenuCode);
+
+            ActivityPower.instance.UseAP(useAP);
+            Money.instance.UseMoney(useMoney);
+
+            int exp = int.Parse(FoodData.instance.MenuData[MenuCode]["CurExp"].ToString());
+            ++exp;
+            FoodData.instance.MenuData[MenuCode]["CurExp"] = exp;
+
+            FoodData.instance.Save(MenuCode);
         }
         else if (useAP > ActivityPower.instance.CurAP)
         {

@@ -9,9 +9,10 @@ public class CompletionFood : MonoBehaviour
 
     public bool[] FoodExist;
     public int[]  FoodCode;
-    public int[] FoodAmount;
+    public int[]  FoodAmount;
 
-    public GameObject[] DisplayStand;
+    public GameObject[] DisplayStand1;
+    public GameObject[] DisplayStand2;
 
     public int FoodMax = 2;
 
@@ -45,7 +46,8 @@ public class CompletionFood : MonoBehaviour
             {
                 FoodExist[i] = false;
                 FoodCode[i] = -1;
-                DisplayStand[i].SetActive(false);
+                DisplayStand1[i].SetActive(false);
+                DisplayStand2[i].SetActive(false);
             }
         }
     }
@@ -74,7 +76,9 @@ public class CompletionFood : MonoBehaviour
 
     public void DisplayingFood(int num, int MenuCode)
     {
-        DisplayStand[num].SetActive(true);
-        DisplayStand[num].GetComponent<Image>().sprite = MenuSetting.instance.sprites[MenuCode];
+        DisplayStand1[num].SetActive(true);
+        DisplayStand1[num].GetComponent<Image>().sprite = FoodData.instance.sprites[MenuCode];
+        DisplayStand2[num].SetActive(true);
+        DisplayStand2[num].GetComponent<SpriteRenderer>().sprite = FoodData.instance.sprites[MenuCode];
     }
 }

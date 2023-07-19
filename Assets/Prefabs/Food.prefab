@@ -378,6 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68655478aafe2d14883e97c864940854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MenuImage: {fileID: 9177503225755683800}
   MenuCode: 0
   MenuType: 0
   UseAP: 0

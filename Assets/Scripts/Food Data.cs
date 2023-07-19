@@ -8,7 +8,9 @@ public class FoodData : MonoBehaviour
 {
     public static FoodData instance;
 
-    public int[,] FoodMenu = new int[2, 6];
+    public TextAsset Data;
+    public JsonData MenuData;
+    public Sprite[] sprites;
 
     void Awake()
     {
@@ -19,8 +21,7 @@ public class FoodData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Load();
-        
+        MenuData = JsonMapper.ToObject(Data.text);
     }
 
     // Update is called once per frame
@@ -29,7 +30,7 @@ public class FoodData : MonoBehaviour
         
     }
 
-    void Load()
+    public void Load()
     {
         
     }

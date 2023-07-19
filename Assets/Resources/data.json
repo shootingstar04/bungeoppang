@@ -1,0 +1,47 @@
+[
+   {
+      "MenuCode":0,
+      "MenuName":"물",
+      "MenuType":"음료",
+      "ReleaseLevel":0,
+      "ReleaseConditions":"",
+      "MenuLevel":1,
+      "CurExp":0,
+      "MaxExp":2,
+      "UseMoney":0,
+      "UseAP":0,
+      "AcquireMoney":100,
+      "AcquireExp":5,
+      "MenuDescription":"산소 1개와 수소 2개로 이루어진 순수한 냥다수"
+   },
+   {
+      "MenuCode":1,
+      "MenuName":"팥 붕어빵",
+      "MenuType":"붕어빵",
+      "ReleaseLevel":0,
+      "ReleaseConditions":"",
+      "MenuLevel":1,
+      "CurExp":0,
+      "MaxExp":2,
+      "UseMoney":200,
+      "UseAP":1,
+      "AcquireMoney":300,
+      "AcquireExp":10,
+      "MenuDescription":""
+   },
+   {
+      "MenuCode":2,
+      "MenuName":"크림 붕어빵",
+      "MenuType":"붕어빵",
+      "ReleaseLevel":0,
+      "ReleaseConditions": "",
+      "MenuLevel":1,
+      "CurExp":0,
+      "MaxExp":2,
+      "UseMoney":200,
+      "UseAP":1,
+      "AcquireMoney":300,
+      "AcquireExp":10,
+      "MenuDescription":""
+   }
+]

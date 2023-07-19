@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuNum : MonoBehaviour
 {
     public static MenuNum instance;
+
+    [SerializeField] Image MenuImage;
 
     public int MenuCode = 0;
     public int MenuType = 0;
@@ -20,7 +23,7 @@ public class MenuNum : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        MenuImage.sprite = FoodData.instance.sprites[MenuCode];
     }
 
     // Update is called once per frame

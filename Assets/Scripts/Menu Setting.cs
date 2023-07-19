@@ -7,14 +7,14 @@ public class MenuSetting : MonoBehaviour
 {
     public static MenuSetting instance;
 
-    public Sprite[] sprites;
-
+    [SerializeField] Text MenuName;
     [SerializeField] Image MenuImage;
     [SerializeField] Text MenuLevel;
     [SerializeField] Text MenuExp;
-    [SerializeField] Text NeedMoney;
-    [SerializeField] Text NeedAP;
+    [SerializeField] Text UseMoney;
+    [SerializeField] Text UseAP;
     [SerializeField] Text MenuNum;
+    [SerializeField] Text MenuDescription;
 
     public int MenuCode = 0;
 
@@ -38,12 +38,14 @@ public class MenuSetting : MonoBehaviour
 
     public void SelectMenu()
     {
-        MenuImage.sprite = sprites[MenuCode];
-        MenuLevel.text = FoodData.instance.FoodMenu[MenuCode, 0].ToString();
-        MenuExp.text = FoodData.instance.FoodMenu[MenuCode, 1].ToString() 
-             + "/" + FoodData.instance.FoodMenu[MenuCode, 2].ToString();
-        NeedMoney.text = FoodData.instance.FoodMenu[MenuCode, 3].ToString();
-        NeedAP.text = FoodData.instance.FoodMenu[MenuCode, 4].ToString();
-        MenuNum.text = FoodData.instance.FoodMenu[MenuCode, 5].ToString();
+        MenuName.text = FoodData.instance.MenuData[MenuCode]["MenuName"].ToString();
+        MenuImage.sprite = FoodData.instance.sprites[MenuCode];
+        MenuLevel.text = FoodData.instance.MenuData[MenuCode]["MenuLevel"].ToString();
+        MenuExp.text = FoodData.instance.MenuData[MenuCode]["CurExp"].ToString() 
+             + "/" + FoodData.instance.MenuData[MenuCode]["MaxExp"].ToString();
+        UseMoney.text = FoodData.instance.MenuData[MenuCode]["UseMoney"].ToString();
+        UseAP.text = FoodData.instance.MenuData[MenuCode]["UseAP"].ToString();
+        MenuNum.text = 2.ToString();
+        MenuDescription.text = FoodData.instance.MenuData[MenuCode]["MenuDescription"].ToString();
     }
 }
