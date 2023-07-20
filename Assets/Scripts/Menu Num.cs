@@ -31,7 +31,6 @@ public class MenuNum : MonoBehaviour
 
     public void MenuUpdate()
     {
-        Debug.Log(MenuCode);
         MenuSetting.instance.MenuCode = MenuCode;
         MenuSetting.instance.SelectMenu();
 

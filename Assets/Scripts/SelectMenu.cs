@@ -30,19 +30,28 @@ public class SelectMenu : MonoBehaviour
     {
         int num = 0;
 
-        for (; ; )
+        num = Random.Range(0, CompletionFood.instance.FoodMax);
+
+        if (CompletionFood.instance.FoodKind > 0)
         {
-            num = Random.Range(0, CompletionFood.instance.FoodMax);
-
-            if (CompletionFood.instance.FoodCode[num] != -1)
-                break;
-            else
-                gameObject.GetComponent<SpriteRenderer>().sprite = QuestionMark;
-            break;
+            for (; ; )
+            {
+                if (CompletionFood.instance.FoodCode[num] != -1)
+                {
+                    gameObject.SetActive(true);
+                    gameObject.GetComponent<SpriteRenderer>().sprite = FoodData.instance.sprites[CompletionFood.instance.FoodCode[num]];
+                    SellSystem.instance.num = num;
+                    break;
+                }
+                else
+                {
+                    num = Random.Range(0, CompletionFood.instance.FoodMax);
+                }
+            }
         }
-
-        gameObject.SetActive(true);
-        gameObject.GetComponent<SpriteRenderer>().sprite = FoodData.instance.sprites[CompletionFood.instance.FoodCode[num]];
-        SellSystem.instance.num = num;
+        else
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = QuestionMark;
+        }
     }
 }

@@ -27,7 +27,7 @@ public class SellSystem : MonoBehaviour , IPointerUpHandler, IPointerDownHandler
 
     public void Sell(int num)
     {
-        CompletionFood.instance.FoodAmount[0] -= 1;
+        CompletionFood.instance.FoodAmount[num] -= 1;
 
         int money = int.Parse(FoodData.instance.MenuData[num]["AcquireMoney"].ToString());
         Money.instance.AcquireMoney(money);

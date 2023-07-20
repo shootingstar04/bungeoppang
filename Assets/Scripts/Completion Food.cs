@@ -15,6 +15,7 @@ public class CompletionFood : MonoBehaviour
     public GameObject[] DisplayStand2;
 
     public int FoodMax = 2;
+    public int FoodKind = 0;
 
     void Awake()
     {
@@ -29,7 +30,7 @@ public class CompletionFood : MonoBehaviour
         FoodCode = new int[6];
         FoodAmount = new int[6];
 
-        for (int i = 0; i < FoodMax; ++i)
+        for (int i = 0; i < 6; ++i)
         {
             FoodExist[i] = false;
             FoodCode[i] = -1;
@@ -40,12 +41,13 @@ public class CompletionFood : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < FoodMax; ++i)
+        for (int i = 0; i < 6; ++i)
         {
             if (FoodCode[i] != -1 && FoodAmount[i] <= 0)
             {
                 FoodExist[i] = false;
                 FoodCode[i] = -1;
+                --FoodKind;
                 DisplayStand1[i].SetActive(false);
                 DisplayStand2[i].SetActive(false);
             }
@@ -63,11 +65,11 @@ public class CompletionFood : MonoBehaviour
         return -1;
     }
 
-    public int OverlapFood()
+    public int OverlapFood(int MenuCode)
     {
         for (int i = 0; i < FoodMax; ++i)
         {
-            if (CookingSystem.instance.MenuCode == FoodCode[i])
+            if (MenuCode == FoodCode[i])
                 return i;
         }
 

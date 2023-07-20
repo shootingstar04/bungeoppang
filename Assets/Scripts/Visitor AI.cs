@@ -35,7 +35,10 @@ public class VisitorAI : MonoBehaviour
         else if (Bought == true && transform.position != SpawnPoint.position)
             transform.position = Vector2.MoveTowards(transform.position, SpawnPoint.position, Speed * Time.deltaTime);
         else if (Bought == true && transform.position == SpawnPoint.position)
+        {
+            VisitorData.instance.VisitorNum -= 1;
             Destroy(gameObject);
+        }
     }
 
     public void SalesCompleted()

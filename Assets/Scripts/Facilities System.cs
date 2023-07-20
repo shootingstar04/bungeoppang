@@ -49,7 +49,6 @@ public class FacilitiesSystem : MonoBehaviour
                 case 2 :
                     CompletionFood.instance.FoodMax += 2;
                     Object[0].SetActive(true);
-                    Object[1].SetActive(true);
                     break;
                 case 3 :
                     Object[0].SetActive(true);

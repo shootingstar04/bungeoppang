@@ -8,6 +8,7 @@ public class CookingSystem : MonoBehaviour
 
     [SerializeField] GameObject NoAPWindow;
     [SerializeField] GameObject NoMoneyWindow;
+    [SerializeField] GameObject NoSiteWindow;
 
     public int MenuCode = 0;
 
@@ -34,20 +35,28 @@ public class CookingSystem : MonoBehaviour
         int useAP = int.Parse(FoodData.instance.MenuData[MenuCode]["UseAP"].ToString());
         int useMoney = int.Parse(FoodData.instance.MenuData[MenuCode]["UseMoney"].ToString());
 
-        if (useAP <= ActivityPower.instance.CurAP  && useMoney <= Money.instance.money)
+        if (CompletionFood.instance.FoodKind == CompletionFood.instance.FoodMax)
+        {
+            NoSiteWindow.SetActive(true);
+        }
+        else if (useAP <= ActivityPower.instance.CurAP  && useMoney <= Money.instance.money)
         {
             int num = 0;
 
-            if (CompletionFood.instance.OverlapFood() == MenuCode)
-                num = CompletionFood.instance.OverlapFood();
+            if (CompletionFood.instance.OverlapFood(MenuCode) != -1)
+                num = CompletionFood.instance.OverlapFood(MenuCode);
+                
             else if (CompletionFood.instance.ThereFood() != -1)
+            {
                 num = CompletionFood.instance.ThereFood();
+                CompletionFood.instance.FoodExist[num] = true;
+                CompletionFood.instance.FoodCode[num] = MenuCode;
+                ++CompletionFood.instance.FoodKind;
+                CompletionFood.instance.DisplayingFood(num, MenuCode);
+            }
 
-            CompletionFood.instance.FoodExist[num] = true;
-            CompletionFood.instance.FoodCode[num] = MenuCode;
             CompletionFood.instance.FoodAmount[num] += 2;
-            CompletionFood.instance.DisplayingFood(num, MenuCode);
-
+            
             ActivityPower.instance.UseAP(useAP);
             Money.instance.UseMoney(useMoney);
 
