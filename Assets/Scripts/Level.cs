@@ -12,7 +12,7 @@ public class Level : MonoBehaviour
 
     public int level = 1;
     public int CurExp = 0;
-    public int MaxExp = 100;
+    public int MaxExp = 300;
 
     void Awake()
     {
@@ -61,6 +61,7 @@ public class Level : MonoBehaviour
     {
         CurExp -= MaxExp;
         ++level;
+        MaxExp += 20;
         ActivityPower.instance.RecoveryAP();
         Save();
     }

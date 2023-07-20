@@ -10,9 +10,6 @@ public class MenuNum : MonoBehaviour
     [SerializeField] Image MenuImage;
 
     public int MenuCode = 0;
-    public int MenuType = 0;
-    public int UseAP = 0;
-    public int UseMoney = 0;
 
     void Awake()
     {
@@ -34,11 +31,10 @@ public class MenuNum : MonoBehaviour
 
     public void MenuUpdate()
     {
+        Debug.Log(MenuCode);
         MenuSetting.instance.MenuCode = MenuCode;
         MenuSetting.instance.SelectMenu();
 
         CookingSystem.instance.MenuCode = MenuCode;
-        CookingSystem.instance.useAP = UseAP;
-        CookingSystem.instance.useMoney = UseMoney;
     }
 }

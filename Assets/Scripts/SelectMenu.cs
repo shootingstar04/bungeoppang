@@ -6,6 +6,8 @@ public class SelectMenu : MonoBehaviour
 {
     public static SelectMenu instance;
 
+    public Sprite QuestionMark;
+
     void Awake()
     {
         if (SelectMenu.instance == null)
@@ -35,10 +37,12 @@ public class SelectMenu : MonoBehaviour
             if (CompletionFood.instance.FoodCode[num] != -1)
                 break;
             else
-                break;
+                gameObject.GetComponent<SpriteRenderer>().sprite = QuestionMark;
+            break;
         }
 
         gameObject.SetActive(true);
         gameObject.GetComponent<SpriteRenderer>().sprite = FoodData.instance.sprites[CompletionFood.instance.FoodCode[num]];
+        SellSystem.instance.num = num;
     }
 }

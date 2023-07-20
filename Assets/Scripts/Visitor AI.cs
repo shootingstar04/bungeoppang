@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class VisitorAI : MonoBehaviour
 {
+    public static VisitorAI instance;
+
     public Transform DestinationPoint;
     public Transform SpawnPoint;
 

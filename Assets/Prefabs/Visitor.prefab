@@ -144,7 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3783cb10eb8db54f92977c3592a8bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Visitor: {fileID: 0}
+  Visitors: {fileID: 0}
+  visitor: {fileID: 0}
+  num: 0
 --- !u!1 &1166110358334028414
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,3 +348,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329188b973f45874d8c280bb19ac4006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  QuestionMark: {fileID: 21300000, guid: d0b9d903266a8d145be955627269975e, type: 3}

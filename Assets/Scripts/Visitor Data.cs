@@ -36,7 +36,7 @@ public class VisitorData : MonoBehaviour
             CurTime += Time.deltaTime;
         }
 
-        if (CurTime > 5)
+        if (CurTime > 15)
         {
             GameObject visitor = Instantiate(Visitor);
 

@@ -5,11 +5,19 @@ using UnityEngine.EventSystems;
 
 public class SellSystem : MonoBehaviour , IPointerUpHandler, IPointerDownHandler
 {
-    public GameObject Visitor;
+    public static SellSystem instance;
+
+    public int num;
+
+    void Awake()
+    {
+        if (SellSystem.instance == null)
+            SellSystem.instance = this;
+    }
     
     void Start()
     {
-        Visitor = transform.parent.gameObject;
+        
     }
 
     void Update()
@@ -17,17 +25,23 @@ public class SellSystem : MonoBehaviour , IPointerUpHandler, IPointerDownHandler
         
     }
 
-    public void Sell()
+    public void Sell(int num)
     {
         CompletionFood.instance.FoodAmount[0] -= 1;
-        Money.instance.AcquireMoney(500);
-        Level.instance.AcquireExp(15);
-        Visitor.GetComponent(typeof(VisitorAI));
+
+        int money = int.Parse(FoodData.instance.MenuData[num]["AcquireMoney"].ToString());
+        Money.instance.AcquireMoney(money);
+
+        int exp = int.Parse(FoodData.instance.MenuData[num]["AcquireExp"].ToString());
+        Level.instance.AcquireExp(exp);
+        
+        transform.parent.GetComponent<VisitorAI>().Bought = true;
+        Destroy(gameObject);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Sell();
+        Sell(num);
     }
 
     public void OnPointerDown(PointerEventData eventData)

@@ -10,8 +10,6 @@ public class CookingSystem : MonoBehaviour
     [SerializeField] GameObject NoMoneyWindow;
 
     public int MenuCode = 0;
-    public int useAP = 0;
-    public int useMoney = 0;
 
     void Awake()
     {
@@ -33,17 +31,17 @@ public class CookingSystem : MonoBehaviour
 
     public void Cooking()
     {
+        int useAP = int.Parse(FoodData.instance.MenuData[MenuCode]["UseAP"].ToString());
+        int useMoney = int.Parse(FoodData.instance.MenuData[MenuCode]["UseMoney"].ToString());
+
         if (useAP <= ActivityPower.instance.CurAP  && useMoney <= Money.instance.money)
         {
             int num = 0;
+
             if (CompletionFood.instance.OverlapFood() == MenuCode)
-            {
                 num = CompletionFood.instance.OverlapFood();
-            }
             else if (CompletionFood.instance.ThereFood() != -1)
-            {
                 num = CompletionFood.instance.ThereFood();
-            }
 
             CompletionFood.instance.FoodExist[num] = true;
             CompletionFood.instance.FoodCode[num] = MenuCode;
