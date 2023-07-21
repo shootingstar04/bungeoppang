@@ -7,6 +7,7 @@ public class VisitorData : MonoBehaviour
     public static VisitorData instance;
 
     public bool[] Seat;
+    public GameObject[] Chair;
     public int SeatMax;
     public int VisitorNum = 0;
 
@@ -39,7 +40,7 @@ public class VisitorData : MonoBehaviour
             CurTime += Time.deltaTime;
         }
 
-        if (CurTime > 15)
+        if (CurTime > 5)
         {
             GameObject visitor = Instantiate(Visitor);
             
@@ -49,6 +50,17 @@ public class VisitorData : MonoBehaviour
 
             CurTime = 0;
             ++VisitorNum;
+        }
+    }
+
+    public int ChoiceSeat()
+    {
+        for (; ; )
+        {
+            int n = Random.Range(0, SeatMax);
+
+            if (Seat[n] != true)
+                return n;
         }
     }
 }

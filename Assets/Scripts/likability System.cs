@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class likabilitySystem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static likabilitySystem instance;
+    [SerializeField] Text likabilityText;
+    public int likability = 0;
+
+    public void Awake()
     {
-        
+        if (likabilitySystem.instance == null)
+            likabilitySystem.instance = this;
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+
+    }
+
     void Update()
     {
-        
+        likabilityText.text = likability.ToString();
+    }
+
+    public void AcquireLikability(int AcqLikability)
+    {
+        likability += AcqLikability;
+        if (likability >= 100)
+        {
+            likability = 100;
+        }
     }
 }

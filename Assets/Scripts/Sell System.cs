@@ -35,7 +35,9 @@ public class SellSystem : MonoBehaviour , IPointerUpHandler, IPointerDownHandler
 
         int exp = int.Parse(FoodData.instance.MenuData[CompletionFood.instance.FoodCode[num]]["AcquireExp"].ToString());
         Level.instance.AcquireExp(exp);
-        
+
+//      likabilitySystem.instance.AcquireLikability(2);
+
         transform.parent.GetComponent<VisitorAI>().Bought = true;
         Destroy(gameObject);
     }
