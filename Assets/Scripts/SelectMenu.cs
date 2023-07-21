@@ -8,6 +8,7 @@ public class SelectMenu : MonoBehaviour
 
     public Sprite QuestionMark;
 
+    public bool NoFood = false;
     void Awake()
     {
         if (SelectMenu.instance == null)
@@ -41,6 +42,8 @@ public class SelectMenu : MonoBehaviour
                     gameObject.SetActive(true);
                     gameObject.GetComponent<SpriteRenderer>().sprite = FoodData.instance.sprites[CompletionFood.instance.FoodCode[num]];
                     SellSystem.instance.num = num;
+                    NoFood = false;
+                    transform.parent.GetComponent<SellSystem>().Worry = false;
                     break;
                 }
                 else
@@ -52,6 +55,8 @@ public class SelectMenu : MonoBehaviour
         else
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = QuestionMark;
+            NoFood = true;
+            transform.parent.GetComponent<SellSystem>().Worry = true;
         }
     }
 }

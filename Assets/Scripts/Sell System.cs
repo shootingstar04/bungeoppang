@@ -8,6 +8,7 @@ public class SellSystem : MonoBehaviour , IPointerUpHandler, IPointerDownHandler
     public static SellSystem instance;
 
     public int num;
+    public bool Worry = false;
 
     void Awake()
     {
@@ -29,10 +30,10 @@ public class SellSystem : MonoBehaviour , IPointerUpHandler, IPointerDownHandler
     {
         CompletionFood.instance.FoodAmount[num] -= 1;
 
-        int money = int.Parse(FoodData.instance.MenuData[num]["AcquireMoney"].ToString());
+        int money = int.Parse(FoodData.instance.MenuData[CompletionFood.instance.FoodCode[num]]["AcquireMoney"].ToString());
         Money.instance.AcquireMoney(money);
 
-        int exp = int.Parse(FoodData.instance.MenuData[num]["AcquireExp"].ToString());
+        int exp = int.Parse(FoodData.instance.MenuData[CompletionFood.instance.FoodCode[num]]["AcquireExp"].ToString());
         Level.instance.AcquireExp(exp);
         
         transform.parent.GetComponent<VisitorAI>().Bought = true;
@@ -41,7 +42,8 @@ public class SellSystem : MonoBehaviour , IPointerUpHandler, IPointerDownHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Sell(num);
+        if (transform.GetComponentInChildren<SelectMenu>(true).NoFood == false)
+            Sell(num);
     }
 
     public void OnPointerDown(PointerEventData eventData)

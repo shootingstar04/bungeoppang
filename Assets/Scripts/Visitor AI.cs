@@ -30,6 +30,8 @@ public class VisitorAI : MonoBehaviour
             SelectMenu.instance.Select();
             Select = true;
         }
+        else if (Select == true && Bought == false && transform.GetComponentInChildren<SellSystem>(true).Worry == true && CompletionFood.instance.FoodKind != 0)
+            SelectMenu.instance.Select();
         else if (Bought == false && transform.position != DestinationPoint.position)
             transform.position = Vector2.MoveTowards(transform.position, DestinationPoint.position, Speed * Time.deltaTime);
         else if (Bought == true && transform.position != SpawnPoint.position)

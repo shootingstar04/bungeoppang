@@ -14,8 +14,8 @@ public class VisitorData : MonoBehaviour
 
     public GameObject Visitor;
 
-    public Transform SpawnPoint;
-    public Transform Target;
+    public Transform[] SpawnPoint;
+    public Transform DestroyPoint;
 
     void Awake()                                
     {
@@ -39,8 +39,10 @@ public class VisitorData : MonoBehaviour
         if (CurTime > 15)
         {
             GameObject visitor = Instantiate(Visitor);
+            
+            int n = Random.RandomRange(0, 2);
 
-            visitor.transform.position = new Vector2(SpawnPoint.position.x, SpawnPoint.position.y);
+            visitor.transform.position = new Vector2(SpawnPoint[n].position.x, SpawnPoint[n].position.y);
 
             CurTime = 0;
             ++VisitorNum;
