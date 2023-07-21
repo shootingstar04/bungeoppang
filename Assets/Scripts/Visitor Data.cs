@@ -6,7 +6,7 @@ public class VisitorData : MonoBehaviour
 {
     public static VisitorData instance;
 
-    public int[] Seat;
+    public bool[] Seat;
     public int SeatMax;
     public int VisitorNum = 0;
 
@@ -26,6 +26,9 @@ public class VisitorData : MonoBehaviour
     void Start()
     {
         SeatMax = 4;
+        Seat = new bool[8];
+        for (int i = 0; i < 8; ++i)
+            Seat[i] = false;
     }
 
     // Update is called once per frame
